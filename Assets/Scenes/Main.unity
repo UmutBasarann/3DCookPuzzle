@@ -725,6 +725,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726788546}
   m_CullTransparentMesh: 1
+--- !u!1 &927599804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 927599806}
+  - component: {fileID: 927599805}
+  m_Layer: 0
+  m_Name: Game
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &927599805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927599804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b505417d2d0c80c4385da33998640ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPage: {fileID: 1702633191898652513, guid: 5b6eecac1a9937f4dad350d332321034, type: 3}
+  mainCanvasRectTransform: {fileID: 1370478433}
+--- !u!4 &927599806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927599804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 151.55118, y: 360.03372, z: 1.6102731}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1101213553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,9 +1147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCanvasRectTransform: {fileID: 1370478433}
-  mainPage: {fileID: 5824811787367553326, guid: 5b6eecac1a9937f4dad350d332321034, type: 3}
-  shopPage: {fileID: 6009972624571450308, guid: 31c569a5298db7b4d9f144ebcbae4d07, type: 3}
-  settingsPage: {fileID: 575613215542758904, guid: 62d718bec30b3354e82f713c01477c67, type: 3}
+  mainPage: {fileID: 1702633191898652513, guid: 5b6eecac1a9937f4dad350d332321034, type: 3}
+  shopPage: {fileID: 7226148775605055397, guid: 31c569a5298db7b4d9f144ebcbae4d07, type: 3}
+  settingsPage: {fileID: 2973526281219497632, guid: 62d718bec30b3354e82f713c01477c67, type: 3}
   btnMainPage: {fileID: 220031701}
   btnShopPage: {fileID: 474868669}
   btnSettingsPage: {fileID: 726788548}

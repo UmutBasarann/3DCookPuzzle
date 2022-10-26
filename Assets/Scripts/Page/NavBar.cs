@@ -1,6 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CP.Scripts.Core;
+using CP.Scripts.Manager.Page;
+using CP.Scripts.Page.Main;
+using CP.Scripts.Page.Settings;
+using CP.Scripts.Page.Shop;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,9 +27,9 @@ namespace CP.Scripts.Page.NavBar
 
         [Header("Pages")]
         
-        [SerializeField] private GameObject mainPage = null;
-        [SerializeField] private GameObject shopPage = null;
-        [SerializeField] private GameObject settingsPage = null;
+        [SerializeField] private MainPage mainPage = null;
+        [SerializeField] private ShopPage shopPage = null;
+        [SerializeField] private SettingsPage settingsPage = null;
 
         #endregion
 
@@ -42,7 +47,16 @@ namespace CP.Scripts.Page.NavBar
 
         #region Fields
 
-        private List<GameObject> _activePages = new List<GameObject>();
+        private PageManager _pageManager;
+        
+        #endregion
+
+        #region Awake | Start | Update
+
+        private void Start()
+        {
+            _pageManager = Game.Instance.PageManager;
+        }
 
         #endregion
 
@@ -64,17 +78,13 @@ namespace CP.Scripts.Page.NavBar
 
         private void OnMainPageButtonClicked()
         {
-            // Later Create Page From Its Own Class
-            
-            foreach (GameObject activePage in _activePages)
+            if (_pageManager.ActivePage != null && _pageManager.ActivePage.activeInHierarchy)
             {
-                Destroy(activePage);
+                Destroy(_pageManager.ActivePage);
             }
-
-            GameObject instance = Instantiate(mainPage, mainCanvasRectTransform);
-            instance.transform.SetAsLastSibling();
             
-            _activePages.Add(instance);
+            GameObject mainPageInstance = mainPage.CreatePage(mainPage.gameObject, mainCanvasRectTransform);
+            _pageManager.DeclareActivePage(mainPageInstance);
         }
 
         #endregion
@@ -83,17 +93,13 @@ namespace CP.Scripts.Page.NavBar
 
         private void OnShopPageButtonClicked()
         {
-            // Later Create Page From Its Own Class
-
-            foreach (GameObject activePage in _activePages)
+            if (_pageManager.ActivePage != null && _pageManager.ActivePage.activeInHierarchy)
             {
-                Destroy(activePage);
+                Destroy(_pageManager.ActivePage);
             }
-
-            GameObject instance = Instantiate(shopPage, mainCanvasRectTransform);
-            instance.transform.SetAsLastSibling();
             
-            _activePages.Add(instance);
+            GameObject shopPageInstance = shopPage.CreatePage(shopPage.gameObject, mainCanvasRectTransform);
+            _pageManager.DeclareActivePage(shopPageInstance);
         }
 
         #endregion
@@ -102,17 +108,13 @@ namespace CP.Scripts.Page.NavBar
 
         private void OnSettingsPageButtonClicked()
         {
-            // Later Create Page From Its Own Class
-
-            foreach (GameObject activePage in _activePages)
+            if (_pageManager.ActivePage != null && _pageManager.ActivePage.activeInHierarchy)
             {
-                Destroy(activePage);
+                Destroy(_pageManager.ActivePage);
             }
             
-            GameObject instance = Instantiate(settingsPage, mainCanvasRectTransform);
-            instance.transform.SetAsLastSibling();
-            
-            _activePages.Add(instance);
+            GameObject settingsPageInstance = settingsPage.CreatePage(settingsPage.gameObject, mainCanvasRectTransform);
+            _pageManager.DeclareActivePage(settingsPageInstance);
         }
 
         #endregion
