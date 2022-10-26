@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CP.Scripts.Manager.Page;
+using CP.Scripts.Manager.Pool;
 using CP.Scripts.Page.Main;
 using UnityEngine;
 
@@ -10,6 +11,10 @@ namespace CP.Scripts.Core
     public class Game : MonoBehaviour
     {
         #region SerializeFields
+
+        [Header("Pool Manager")]
+        [SerializeField] private PoolManager poolManager = null;
+        public PoolManager PoolManager => poolManager;
 
         [Header("Page")] 
         [SerializeField] private MainPage mainPage = null;
@@ -21,8 +26,8 @@ namespace CP.Scripts.Core
 
         #region Fields
 
-        public static Game Instance { get; private set; }
-        public PageManager PageManager { get; set; }
+        internal static Game Instance { get; private set; }
+        public PageManager PageManager { get; private set; }
 
         #endregion
 

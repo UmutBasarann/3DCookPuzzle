@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using CP.Scripts.Interface.Page;
-using CP.Scripts.Manager.Page;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using CP.Scripts.Core;
+using CP.Scripts.Data;
 using CP.Scripts.Manager.Page;
 using CP.Scripts.Page.Main;
 using CP.Scripts.Page.Settings;
