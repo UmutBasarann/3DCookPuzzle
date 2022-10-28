@@ -62,8 +62,8 @@ namespace CP.Scripts.Page.Shop
 
         private void PoolButtons()
         {
-            _poolManager.Pool(_btnOrange, orangeButtonAreaRectTransform, 6);
-            _poolManager.Pool(_btnYellow, yellowButtonAreaRectTransform, 9);
+            _poolManager.Pool(_btnOrange, orangeButtonAreaRectTransform, Paths.OrangeButtonCount);
+            _poolManager.Pool(_btnYellow, yellowButtonAreaRectTransform, Paths.YellowButtonCount);
         }
 
         #endregion

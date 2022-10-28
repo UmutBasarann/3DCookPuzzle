@@ -9,6 +9,8 @@ namespace CP.Scripts.Data
         // Buttons
         public const string OrangeButtonPath = "Prefabs/Button/btnOrange";
         public const string YellowButtonPath = "Prefabs/Button/btnYellow";
+        public const int OrangeButtonCount = 6;
+        public const int YellowButtonCount = 9;
     }
 }
 
