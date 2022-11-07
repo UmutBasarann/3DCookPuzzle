@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using CP.Scripts.Manager.Page;
 using CP.Scripts.Manager.Pool;
+using CP.Scripts.Page.Game;
 using CP.Scripts.Page.Main;
 using UnityEngine;
 
@@ -16,11 +14,16 @@ namespace CP.Scripts.Core
         [SerializeField] private PoolManager poolManager = null;
         public PoolManager PoolManager => poolManager;
 
-        [Header("Page")] 
-        [SerializeField] private MainPage mainPage = null;
+        [Header("Page")]
+        [SerializeField] private SelectionPage selectionPage = null;
 
+        [SerializeField] private GamePage gamePage = null;
+
+        [Header("Main Canvas")]
+        [SerializeField] private Canvas mainCanvas = null;
+        
         [Header("Rect Transform")] 
-        [SerializeField] private RectTransform mainCanvasRectTransform = null;
+        [SerializeField] private RectTransform safeAreaRectTransform = null;
 
         #endregion
 
@@ -28,6 +31,9 @@ namespace CP.Scripts.Core
 
         internal static Game Instance { get; private set; }
         public PageManager PageManager { get; private set; }
+
+        private GameObject _selectionPageInstance;
+        private GameObject _gamePageInstance;
 
         #endregion
 
@@ -50,17 +56,51 @@ namespace CP.Scripts.Core
         private void Start()
         {
             PageManager = new PageManager();
-            CreateMainPage();
+            CreateSelectionPage();
+            
+            SelectionPage.OnPlayButtonClicked += OnPlayButtonClicked;
+        }
+        
+        #endregion
+
+        #region Get: ScaleFactor
+
+        public float GetScaleFactor()
+        {
+            return mainCanvas.scaleFactor;
+        }
+
+        #endregion
+        
+        #region StartGame
+
+        private void StartGame()
+        {
+            Destroy(_selectionPageInstance);
+
+            _gamePageInstance = gamePage.CreatePage(gamePage.gameObject, safeAreaRectTransform);
+            PageManager.DeclareActivePage(_gamePageInstance);
+            
+            SelectionPage.OnPlayButtonClicked -= OnPlayButtonClicked;
         }
 
         #endregion
 
         #region CreateMainPage
 
-        private void CreateMainPage()
+        private void CreateSelectionPage()
         {
-            GameObject mainPageInstance = mainPage.CreatePage(mainPage.gameObject, mainCanvasRectTransform);
-            PageManager.DeclareActivePage(mainPageInstance);
+            _selectionPageInstance = selectionPage.CreatePage(selectionPage.gameObject, safeAreaRectTransform);
+            PageManager.DeclareActivePage(_selectionPageInstance);
+        }
+
+        #endregion
+        
+        #region Event: OnPlayButtonClicked
+
+        private void OnPlayButtonClicked()
+        {
+            StartGame();
         }
 
         #endregion

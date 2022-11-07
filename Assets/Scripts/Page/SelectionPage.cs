@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CP.Scripts.Core;
 using CP.Scripts.Interface.Page;
 using CP.Scripts.Manager.Page;
 using UnityEngine;
@@ -8,17 +9,31 @@ using UnityEngine.UI;
 
 namespace CP.Scripts.Page.Main
 {
-    public class MainPage : MonoBehaviour ,IPage
+    public class SelectionPage : MonoBehaviour ,IPage
     {
+        #region Event | Action
+
+        public static event Action OnPlayButtonClicked;
+
+        #endregion
+        
         #region SerializeFields
 
-        [SerializeField] private Button btnPlay = null;
-        [SerializeField] private Button btnChest = null;
+        [SerializeField] private Button btnSelectionPlay = null;
 
         #endregion
         
         #region Fields
 
+
+        #endregion
+
+        #region Awake | Start | Update
+
+        private void Start()
+        {
+
+        }
 
         #endregion
 
@@ -51,11 +66,23 @@ namespace CP.Scripts.Page.Main
 
         #endregion
 
+        #region Event: OnBtnPlayClicked
+
+        private void OnBtnPlayClicked()
+        {
+            if (OnPlayButtonClicked != null)
+            {
+                OnPlayButtonClicked();
+            }
+        }
+
+        #endregion
+
         #region AddEvents
 
         private void AddEvents()
         {
-            
+            btnSelectionPlay.onClick.AddListener(OnBtnPlayClicked);
         }
 
         #endregion
@@ -64,7 +91,7 @@ namespace CP.Scripts.Page.Main
 
         private void RemoveEvents()
         {
-            
+            btnSelectionPlay.onClick.RemoveAllListeners();
         }
 
         #endregion
