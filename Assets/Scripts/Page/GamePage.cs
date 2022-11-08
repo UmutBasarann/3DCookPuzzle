@@ -56,6 +56,8 @@ namespace CP.Scripts.Page.Game
 
         private void Start()
         {
+            Debug.Log("GamePage Start.");
+            
             SetIngredients();
             PoolVegetables();
 

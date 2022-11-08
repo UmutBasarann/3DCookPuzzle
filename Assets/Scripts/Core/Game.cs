@@ -65,8 +65,7 @@ namespace CP.Scripts.Core
             CreateSelectionPage();
             
             SelectionPage.OnPlayButtonClicked += OnPlayButtonClicked;
-            GamePage.OnGameWon += OnGameWon;
-            GamePage.OnGameLost += OnGameLost;
+
         }
         
         #endregion
@@ -89,6 +88,8 @@ namespace CP.Scripts.Core
             _gamePageInstance = gamePage.CreatePage(gamePage.gameObject, safeAreaRectTransform);
             PageManager.DeclareActivePage(_gamePageInstance);
             
+            GamePage.OnGameWon += OnGameWon;
+            GamePage.OnGameLost += OnGameLost;
         }
 
         #endregion
@@ -153,7 +154,9 @@ namespace CP.Scripts.Core
             SelectionPage.OnPlayButtonClicked += OnPlayButtonClicked;
 
             GameWonPage.OnGameWonContinueButtonClicked -= OnGameWonContinueButtonClicked;
+            GameLostPage.OnGameLostContinueButtonClicked -= OnGameLostContinueButtonClicked;
             GamePage.OnGameWon -= OnGameWon;
+            GamePage.OnGameLost -= OnGameLost;
 
         }
 
@@ -170,6 +173,8 @@ namespace CP.Scripts.Core
             SelectionPage.OnPlayButtonClicked += OnPlayButtonClicked;
 
             GameLostPage.OnGameLostContinueButtonClicked -= OnGameLostContinueButtonClicked;
+            GameWonPage.OnGameWonContinueButtonClicked -= OnGameWonContinueButtonClicked;
+            GamePage.OnGameWon -= OnGameWon;
             GamePage.OnGameLost -= OnGameLost;
         }
 
