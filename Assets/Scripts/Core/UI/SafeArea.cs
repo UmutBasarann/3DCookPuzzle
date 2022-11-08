@@ -34,14 +34,14 @@ namespace CP.Scripts.Core.UI
 
         private void SetSize()
         {
-            Debug.Log($"SafeArea Size: {_safeArea.size}");
-            Debug.Log($"SafeArea Width: {_safeArea.width}");
-            Debug.Log($"SafeArea Height: {_safeArea.height}");
-            Debug.Log($"SafeArea Position: {_safeArea.position}");
-            Debug.Log($"SafeArea (XMax, YMax): ({_safeArea.xMax}, {_safeArea.yMax})");
-            Debug.Log($"SafeArea (XMin, YMin): ({_safeArea.xMin}, {_safeArea.yMin})");
-            Debug.Log($"SafeArea X: {_safeArea.x}");
-            Debug.Log($"SafeArea Y: {_safeArea.y}");
+            // Debug.Log($"SafeArea Size: {_safeArea.size}");
+            // Debug.Log($"SafeArea Width: {_safeArea.width}");
+            // Debug.Log($"SafeArea Height: {_safeArea.height}");
+            // Debug.Log($"SafeArea Position: {_safeArea.position}");
+            // Debug.Log($"SafeArea (XMax, YMax): ({_safeArea.xMax}, {_safeArea.yMax})");
+            // Debug.Log($"SafeArea (XMin, YMin): ({_safeArea.xMin}, {_safeArea.yMin})");
+            // Debug.Log($"SafeArea X: {_safeArea.x}");
+            // Debug.Log($"SafeArea Y: {_safeArea.y}");
 
             _rectTransform.sizeDelta = _safeArea.size;
         }

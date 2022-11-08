@@ -1,5 +1,6 @@
 using CP.Scripts.Manager.Page;
 using CP.Scripts.Manager.Pool;
+using CP.Scripts.Page;
 using CP.Scripts.Page.Game;
 using CP.Scripts.Page.Main;
 using UnityEngine;
@@ -19,6 +20,9 @@ namespace CP.Scripts.Core
 
         [SerializeField] private GamePage gamePage = null;
 
+        [SerializeField] private GameWonPage gameWonPage = null;
+        [SerializeField] private GameLostPage gameLostPage = null;
+
         [Header("Main Canvas")]
         [SerializeField] private Canvas mainCanvas = null;
         
@@ -34,6 +38,8 @@ namespace CP.Scripts.Core
 
         private GameObject _selectionPageInstance;
         private GameObject _gamePageInstance;
+        private GameObject _gameWonPageInstance;
+        private GameObject _gameLostPageInstance;
 
         #endregion
 
@@ -59,6 +65,8 @@ namespace CP.Scripts.Core
             CreateSelectionPage();
             
             SelectionPage.OnPlayButtonClicked += OnPlayButtonClicked;
+            GamePage.OnGameWon += OnGameWon;
+            GamePage.OnGameLost += OnGameLost;
         }
         
         #endregion
@@ -81,12 +89,11 @@ namespace CP.Scripts.Core
             _gamePageInstance = gamePage.CreatePage(gamePage.gameObject, safeAreaRectTransform);
             PageManager.DeclareActivePage(_gamePageInstance);
             
-            SelectionPage.OnPlayButtonClicked -= OnPlayButtonClicked;
         }
 
         #endregion
 
-        #region CreateMainPage
+        #region CreateSelectionPage
 
         private void CreateSelectionPage()
         {
@@ -101,6 +108,69 @@ namespace CP.Scripts.Core
         private void OnPlayButtonClicked()
         {
             StartGame();
+            
+            SelectionPage.OnPlayButtonClicked -= OnPlayButtonClicked;
+        }
+
+        #endregion
+
+        #region Event: OnGameWon
+
+        private void OnGameWon()
+        {
+            Destroy(_gamePageInstance);
+
+            _gameWonPageInstance = gameWonPage.CreatePage(gameWonPage.gameObject, safeAreaRectTransform);
+            PageManager.DeclareActivePage(_gameWonPageInstance);
+
+            GameWonPage.OnGameWonContinueButtonClicked += OnGameWonContinueButtonClicked;
+        }
+
+        #endregion
+        
+        #region Event: OnGameLost
+
+        private void OnGameLost()
+        {
+            Destroy(_gamePageInstance);
+
+            _gameLostPageInstance = gameLostPage.CreatePage(gameLostPage.gameObject, safeAreaRectTransform);
+            PageManager.DeclareActivePage(_gameLostPageInstance);
+
+            GameLostPage.OnGameLostContinueButtonClicked += OnGameLostContinueButtonClicked;
+        }
+
+        #endregion
+        
+        #region Event: OnGameWonContinueButtonClicked
+
+        private void OnGameWonContinueButtonClicked()
+        {
+            Destroy(_gameWonPageInstance);
+
+            CreateSelectionPage();
+            
+            SelectionPage.OnPlayButtonClicked += OnPlayButtonClicked;
+
+            GameWonPage.OnGameWonContinueButtonClicked -= OnGameWonContinueButtonClicked;
+            GamePage.OnGameWon -= OnGameWon;
+
+        }
+
+        #endregion
+        
+        #region Event: OnGameLostContinueButtonClicked
+
+        private void OnGameLostContinueButtonClicked()
+        {
+            Destroy(_gameLostPageInstance);
+
+            CreateSelectionPage();
+            
+            SelectionPage.OnPlayButtonClicked += OnPlayButtonClicked;
+
+            GameLostPage.OnGameLostContinueButtonClicked -= OnGameLostContinueButtonClicked;
+            GamePage.OnGameLost -= OnGameLost;
         }
 
         #endregion

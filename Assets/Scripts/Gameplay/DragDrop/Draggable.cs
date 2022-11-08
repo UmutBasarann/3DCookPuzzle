@@ -20,6 +20,9 @@ namespace CP.Scripts.Gameplay
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;
 
+        private bool _isDraggable = true;
+        public bool IsDraggable => _isDraggable;
+
         #endregion
 
         #region Awake | Start | Update
@@ -28,6 +31,15 @@ namespace CP.Scripts.Gameplay
         {
             _rectTransform = GetComponent<RectTransform>();
             _canvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        #endregion
+
+        #region Set: DraggableState
+
+        public void SetDraggableState(bool isDraggable)
+        {
+            _isDraggable = isDraggable;
         }
 
         #endregion
@@ -45,6 +57,11 @@ namespace CP.Scripts.Gameplay
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (!_isDraggable)
+            {
+                return;
+            }
+            
             _canvasGroup.blocksRaycasts = false;
             _rectTransform.anchoredPosition += eventData.delta / Game.Instance.GetScaleFactor();
         }

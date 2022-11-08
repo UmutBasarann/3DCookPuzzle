@@ -359,6 +359,8 @@ MonoBehaviour:
   poolManager: {fileID: 154530055}
   selectionPage: {fileID: 1702633191898652513, guid: 5b6eecac1a9937f4dad350d332321034, type: 3}
   gamePage: {fileID: 3741537251956419507, guid: b9d0cbbc80ee7424a8cab4f353dfeb72, type: 3}
+  gameWonPage: {fileID: 3673692194494898558, guid: 5e67c06f174d01f4cbfb6a44de7c3a56, type: 3}
+  gameLostPage: {fileID: 2198072727241422516, guid: c41273ba76a5c5c49852ad70a1a649cc, type: 3}
   mainCanvas: {fileID: 1370478432}
   safeAreaRectTransform: {fileID: 1609373343}
 --- !u!4 &927599806

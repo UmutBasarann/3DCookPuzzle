@@ -1,39 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using CP.Scripts.Core;
 using CP.Scripts.Interface.Page;
-using CP.Scripts.Manager.Page;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CP.Scripts.Page.Main
+namespace CP.Scripts.Page
 {
-    public class SelectionPage : MonoBehaviour ,IPage
+    public class GameLostPage : MonoBehaviour, IPage
     {
         #region Event | Action
 
-        public static event Action OnPlayButtonClicked;
+        public static event Action OnGameLostContinueButtonClicked;
 
         #endregion
         
         #region SerializeFields
 
-        [SerializeField] private Button btnSelectionPlay = null;
-
-        #endregion
-        
-        #region Fields
-
+        [SerializeField] private Button btnContinue = null;
 
         #endregion
 
         #region Awake | Start | Update
 
-        private void Start()
-        {
 
-        }
 
         #endregion
 
@@ -54,9 +44,9 @@ namespace CP.Scripts.Page.Main
         }
 
         #endregion
-
-        #region CreatePage
         
+        #region CreatePage
+
         public GameObject CreatePage(GameObject page, Transform parent)
         {
             if (parent is null)
@@ -66,19 +56,18 @@ namespace CP.Scripts.Page.Main
             
             GameObject instance = Instantiate(page, parent);
             instance.transform.SetAsLastSibling();
-            
             return instance;
         }
 
         #endregion
 
-        #region Event: OnBtnPlayClicked
+        #region Event: OnBtnContinueClicked
 
-        private void OnBtnPlayClicked()
+        private void OnBtnContinueClicked()
         {
-            if (OnPlayButtonClicked != null)
+            if (OnGameLostContinueButtonClicked != null)
             {
-                OnPlayButtonClicked();
+                OnGameLostContinueButtonClicked();
             }
         }
 
@@ -88,7 +77,7 @@ namespace CP.Scripts.Page.Main
 
         private void AddEvents()
         {
-            btnSelectionPlay.onClick.AddListener(OnBtnPlayClicked);
+            btnContinue.onClick.AddListener(OnBtnContinueClicked);
         }
 
         #endregion
@@ -97,10 +86,9 @@ namespace CP.Scripts.Page.Main
 
         private void RemoveEvents()
         {
-            btnSelectionPlay.onClick.RemoveAllListeners();
+            btnContinue.onClick.RemoveAllListeners();
         }
 
         #endregion
     }
 }
-
